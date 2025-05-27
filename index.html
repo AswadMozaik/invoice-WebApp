@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Buat Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    #output {
+      margin-top: 30px;
+      white-space: pre-wrap;
+      text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📦 Buat Invoice</h1>
+  <button onclick="jalankanInvoice()">Buat Invoice</button>
+
+  <div id="output">Hasil akan muncul di sini...</div>
+
+  <script>
+    // Ganti URL ini dengan URL Web App milikmu
+    "https://script.google.com/macros/s/AKfycbwVSwLrtBFYFLFs1gfbNTcyEM4thSOtlWN6sCO_cdYJtqowISYwnlN5sBehKXXTxjhjxQ/exec ";
+
+    function jalankanInvoice() {
+      const action = "?action=prosesInvoice";
+      const url = webAppUrl + action;
+
+      document.getElementById("output").innerText = "⏳ Sedang memproses...";
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("output").innerText = "❌ Gagal mengakses Web App:\n" + error;
+        });
+    }
+  </script>
+
+</body>
+</html>
